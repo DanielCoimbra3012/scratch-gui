@@ -41,6 +41,7 @@ import addExtensionIcon from './icon--extensions.svg';
 import codeIcon from './icon--code.svg';
 import costumesIcon from './icon--costumes.svg';
 import soundsIcon from './icon--sounds.svg';
+import DebugModal from '../debug-modal/debug-modal.jsx';
 
 const messages = defineMessages({
     addExtension: {
@@ -84,6 +85,7 @@ const GUIComponent = props => {
         connectionModalVisible,
         costumeLibraryVisible,
         costumesTabVisible,
+        debugModalVisible,
         enableCommunity,
         intl,
         isCreating,
@@ -110,6 +112,7 @@ const GUIComponent = props => {
         onProjectTelemetryEvent,
         onRequestCloseBackdropLibrary,
         onRequestCloseCostumeLibrary,
+        onRequestCloseDebugModal,
         onRequestCloseTelemetryModal,
         onSeeCommunity,
         onShare,
@@ -210,6 +213,10 @@ const GUIComponent = props => {
                         onRequestClose={onRequestCloseCostumeLibrary}
                     />
                 ) : null}
+                {<DebugModal
+                    isOpen={debugModalVisible}
+                    onClose={onRequestCloseDebugModal}
+                />}
                 {backdropLibraryVisible ? (
                     <BackdropLibrary
                         vm={vm}
@@ -404,6 +411,7 @@ GUIComponent.propTypes = {
     children: PropTypes.node,
     costumeLibraryVisible: PropTypes.bool,
     costumesTabVisible: PropTypes.bool,
+    debugModalVisible: PropTypes.bool,
     enableCommunity: PropTypes.bool,
     intl: intlShape.isRequired,
     isCreating: PropTypes.bool,
@@ -425,6 +433,7 @@ GUIComponent.propTypes = {
     onOpenRegistration: PropTypes.func,
     onRequestCloseBackdropLibrary: PropTypes.func,
     onRequestCloseCostumeLibrary: PropTypes.func,
+    onRequestCloseDebugModal: PropTypes.func,
     onRequestCloseTelemetryModal: PropTypes.func,
     onSeeCommunity: PropTypes.func,
     onShare: PropTypes.func,
