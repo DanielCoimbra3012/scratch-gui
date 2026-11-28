@@ -58,6 +58,11 @@ const baseConfig = new ScratchWebpackConfigBuilder(
     .addPlugin(new CopyWebpackPlugin({
         patterns: [
             {
+                // scratch-storage 4.x loads its fetch worker from /chunks/
+                from: 'node_modules/scratch-storage/dist/web/chunks',
+                to: 'chunks'
+            },
+            {
                 from: 'node_modules/scratch-blocks/media',
                 to: 'static/blocks-media/default'
             },
